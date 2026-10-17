@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "aws": {
+      "command": "python",
+      "args": ["aws/server.py"]
+    },
+    "denodo": {
+      "command": "python",
+      "args": ["denodo/server.py"]
+    },
+    "github": {
+      "command": "python",
+      "args": ["github/server.py"]
+    }
+  }
+}
