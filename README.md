@@ -129,36 +129,77 @@ Optional packages used by the project may include the SQL Server ODBC client and
 ## Structure
 
 ```text
-analytics-common-mcp/
+mcp-servers/
 ├── aws/
+│   └── run_server.py
 ├── cache/
 ├── confluent/
+│   └── confluence_server.py
 ├── dbt/
+│   └── dbt_server.py
 ├── denodo/
+│   └── denodo_server.py
 ├── docs/
 ├── github/
+│   ├── run-github-mcp.cmd
+│   └── github-mcp.cmd
 ├── hana/
+│   └── hana_server.py
 ├── jira/
+│   └── jira_server.py
+├── logs/
 ├── powerbi-rest/
+│   └── server.py
 ├── servicenow/
+│   ├── servicenow_proxy.py
+│   └── setup_auth.py
+├── shared/
+│   ├── credentials.py
+│   ├── audit.py
+│   └── logs/
 ├── shared-skills/
 ├── snowflake/
+│   └── server.py
 ├── sqlserver/
+│   └── sqlserver_server.py
+├── .env.example
 ├── .gitignore
 ├── .mcp.json.example
 ├── README.md
 ├── requirements.txt
 ├── setup_credentials.py
-└── SETUP_GUIDE.md
+├── SETUP_GUIDE.md
+└── .gitignore
 ```
 
 ## Security
 
-Credentials are stored in Windows Credential Manager and encrypted via DPAPI, tied to your Windows login. Tokens are refreshed automatically through the OAuth flow, and only the necessary secrets are kept in the local environment.
+- Credentials are stored in Windows Credential Manager and encrypted via DPAPI, tied to your Windows login.
+- No secrets are kept in config files — `.mcp.json` contains only URLs, hostnames, and account IDs.
+- Audit logging records every tool call to `logs/<server>.json` with timestamp, user, server, tool name, arguments (passwords masked), status, and duration.
+- Log retention is 15 days; old entries are auto-pruned on server startup.
+- Snowflake, SQL Server, Denodo, and HANA are read-only by default and block write operations.
+- ServiceNow, AWS, and Snowflake rely on user-level SSO access instead of service accounts or privilege escalation.
+- ServiceNow MCP respects ACLs and only exposes data a user can access.
+- `.env` and `.mcp.json` are gitignored and never committed.
 
 ## Audit Logs
 
-Each MCP server logs to `logs/<server>.json` or a central application log, depending on configuration. Logs capture request metadata, timestamps, and success/failure outcomes for operational troubleshooting.
+Each MCP server logs to `logs/<server>.json`:
+
+```json
+{
+  "timestamp": "2026-09-02T10:18:27Z",
+  "user": "mmanis7",
+  "server": "servicenow",
+  "tool": "query incident",
+  "arguments": { "sys_id": "..." },
+  "status": "success",
+  "duration_ms": 321
+}
+```
+
+Logged fields include timestamp, user, server, tool name, arguments (with passwords masked), status, and duration. Response data, PII, and query results are not logged.
 
 ## Notes
 
