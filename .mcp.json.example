@@ -1,0 +1,103 @@
+{
+  "mcpServers": {
+    "snowflake": {
+      "command": "C:\\path\\to\\venv\\Scripts\\python.exe",
+      "args": ["C:\\path\\to\\mcp-servers\\snowflake\\snowflake_server.py"],
+      "env": {
+        "SNOWFLAKE_ACCOUNT": "<YOUR_ACCOUNT>",
+        "SNOWFLAKE_USER": "<YOUR_EMAIL>",
+        "SNOWFLAKE_DATABASE": "<DB_NAME>",
+        "SNOWFLAKE_SCHEMA": "<SCHEMA_NAME>",
+        "SNOWFLAKE_WAREHOUSE": "<WAREHOUSE_NAME>"
+      }
+    },
+    "aws": {
+      "command": "C:\\path\\to\\venv\\Scripts\\python.exe",
+      "args": ["C:\\path\\to\\mcp-servers\\aws\\aws_server.py"],
+      "env": {
+        "AWS_SSO_START_URL": "<YOUR_SSO_URL>",
+        "AWS_SSO_REGION": "us-east-2",
+        "AWS_PROFILE_NAME": "<PROFILE_NAME>",
+        "AWS_ACCOUNT_ID": "<ACCOUNT_ID>",
+        "AWS_ROLE_NAME": "<ROLE_NAME>"
+      }
+    },
+    "sqlserver": {
+      "command": "C:\\path\\to\\venv\\Scripts\\python.exe",
+      "args": ["C:\\path\\to\\mcp-servers\\sqlserver\\sqlserver_server.py"],
+      "env": {
+        "SQLSERVER_HOST": "invawsdb01",
+        "SQLSERVER_DRIVER": "ODBC Driver 17 for SQL Server",
+        "SQLSERVER_DATABASE": "master"
+      }
+    },
+    "hana": {
+      "command": "C:\\path\\to\\venv\\Scripts\\python.exe",
+      "args": ["C:\\path\\to\\mcp-servers\\hana\\hana_server.py"],
+      "env": {
+        "HANA_MCP_AWS_PROFILE": "<PROFILE_NAME>",
+        "HANA_MCP_AWS_REGION": "us-east-2"
+      }
+    },
+    "powerbi-rest": {
+      "command": "C:\\path\\to\\venv\\Scripts\\python.exe",
+      "args": ["C:\\path\\to\\mcp-servers\\powerbi-rest\\powerbi_rest_server.py"],
+      "env": {
+        "POWERBI_TENANT_ID": "<YOUR_TENANT_ID>",
+        "POWERBI_CLIENT_ID": "<YOUR_CLIENT_ID>"
+      }
+    },
+    "jira": {
+      "command": "C:\\path\\to\\venv\\Scripts\\python.exe",
+      "args": ["C:\\path\\to\\mcp-servers\\jira\\jira_server.py"],
+      "env": {
+        "ATLASSIAN_CLOUD_ID": "<YOUR_CLOUD_ID>",
+        "ATLASSIAN_CLIENT_ID": "<YOUR_CLIENT_ID>"
+      }
+    },
+    "confluence": {
+      "command": "C:\\path\\to\\venv\\Scripts\\python.exe",
+      "args": ["C:\\path\\to\\mcp-servers\\confluence\\confluence_server.py"],
+      "env": {
+        "ATLASSIAN_CLOUD_ID": "<YOUR_CLOUD_ID>",
+        "ATLASSIAN_CLIENT_ID": "<YOUR_CLIENT_ID>"
+      }
+    },
+    "denodo": {
+      "command": "C:\\path\\to\\venv\\Scripts\\python.exe",
+      "args": ["C:\\path\\to\\mcp-servers\\denodo\\denodo_server.py"],
+      "env": {
+        "DENODO_HOST": "<YOUR_HOST>",
+        "DENODO_PORT": "9443",
+        "DENODO_USER": "<YOUR_EMAIL>",
+        "DENODO_PASSWORD": "<YOUR_PASSWORD>"
+      }
+    },
+    "dbt": {
+      "command": "C:\\path\\to\\venv\\Scripts\\python.exe",
+      "args": ["C:\\path\\to\\mcp-servers\\dbt\\dbt_server.py"],
+      "env": {
+        "DBT_PROJECT_ROOT": "C:\\path\\to\\analytics-dbt-common",
+        "DBT_ACCOUNT_ID": "<YOUR_ACCOUNT_ID>",
+        "DBT_BASE_URL": "https://<org>.us1.dbt.com"
+      }
+    },
+    "servicenow": {
+      "command": "C:\\path\\to\\venv\\Scripts\\python.exe",
+      "args": ["C:\\path\\to\\mcp-servers\\servicenow\\servicenow_proxy.py"],
+      "env": {
+        "SERVICENOW_MCP_URL": "https://<kochprod>.service-now.com/snappcs/mcp-server/mcp/x_koi_ent_it_mcp_item_fulliller"
+      }
+    },
+    "github": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "C:\\path\\to\\mcp-servers\\github\\run-github-mcp.cmd"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "<YOUR_TOKEN>"
+      }
+    }
+  }
+}

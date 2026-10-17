@@ -1,0 +1,39 @@
+# Credentials and local config
+.env
+.mcp.json
+*.pem
+*.key
+*.p12
+*.pfx
+*tokens*.json
+*credentials*.json
+*service_account*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+*.egg-info/
+.venv/
+venv/
+ENV/
+env/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs and build output
+logs/
+*.log
+.pyc
+build/
+dist/
+.eggs/
