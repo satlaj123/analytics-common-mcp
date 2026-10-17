@@ -6,20 +6,19 @@ A collection of Model Context Protocol (MCP) servers for Claude Code, providing 
 
 | Server | Purpose | Tools | Auth Method |
 | --- | --- | --- | --- |
-| snowflake | Snowflake queries + dbt migration automation | 21 | SSO |
-| server | Setup Functions, Lambda, S3, CloudWatch, EventBridge | 19 | AWS SSO |
-| dbt | dbt Cloud jobs, runs, and local project tasks | 11 | Windows Auth |
+| aws | AWS setup utilities and Lambda/S3/CloudWatch integrations | 19 | AWS SSO |
+| snowflake | Snowflake queries and setup helpers | 21 | SSO |
+| sqlserver | SQL Server database access | 10 | Windows/Auth |
 | denodo | Denodo virtual database queries | 7 | Username/Password |
 | jira | Jira integration | 8 | OAuth |
-| confluence | Confluence (ID project) | 4 | OAuth |
-| servicenow | ServiceNow ITSM (native MCP via OAuth proxy) | 14 | OAuth 2.0 (SSO) |
+| confluence | Confluence integration | 4 | OAuth |
+| dbt | dbt Cloud jobs, runs, and local project tasks | 11 | Token |
+| servicenow | ServiceNow ITSM and OAuth proxy | 14 | OAuth 2.0 |
 | github | GitHub repositories, PRs, and issues | 26 | Personal Access Token |
-| powerbi | Power BI REST API (refresh and metadata access) | 30 | N/A (token extension) |
-| hana | SAP HANA table queries via AWS tunnel | 6 | AWS SSO |
-| datadog | Datadog observability, logs, traces, monitors, dashboards, incidents | 34 | OAuth 2.0 (browser) |
-| eventbus | EventBus integration | 18 | OAuth 2.0 (browser) |
+| powerbi-rest | Power BI REST API support | 30 | Token-based |
+| hana | SAP HANA queries via tunnel | 6 | AWS SSO |
 
-The first set of servers are defined in `mcp.json`. `datadog` and `eventbus` are hosted HTTPS servers that you add once at the user level (see Hosted servers).
+These servers are configured in `.mcp.json` and local helper scripts during setup.
 
 ## Setup
 
@@ -129,17 +128,15 @@ Optional packages used by the project may include the SQL Server ODBC client and
 ## Structure
 
 ```text
-mcp-servers/
+analytics-common-mcp/
 ├── aws/
 │   └── run_server.py
-├── cache/
-├── confluent/
+├── confluence/
 │   └── confluence_server.py
 ├── dbt/
 │   └── dbt_server.py
 ├── denodo/
 │   └── denodo_server.py
-├── docs/
 ├── github/
 │   ├── run-github-mcp.cmd
 │   └── github-mcp.cmd
@@ -157,7 +154,6 @@ mcp-servers/
 │   ├── credentials.py
 │   ├── audit.py
 │   └── logs/
-├── shared-skills/
 ├── snowflake/
 │   └── server.py
 ├── sqlserver/
@@ -168,8 +164,7 @@ mcp-servers/
 ├── README.md
 ├── requirements.txt
 ├── setup_credentials.py
-├── SETUP_GUIDE.md
-└── .gitignore
+└── SETUP_GUIDE.md
 ```
 
 ## Security
