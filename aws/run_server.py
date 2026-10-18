@@ -1,9 +1,12 @@
-"""AWS MCP server entry point placeholder."""
+"""AWS MCP server entry point."""
+import sys 
+import os 
 
+sys.path.insert(0, os.path.join(os.path.dirname(__file__),"src"))
 
-def main() -> None:
-    print("AWS MCP server placeholder")
+import asyncio
+from aws_mcp.server import main
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
