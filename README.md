@@ -6,7 +6,7 @@ A collection of Model Context Protocol (MCP) servers for Claude Code, providing 
 
 | Server | Purpose | Tools | Auth Method |
 | --- | --- | --- | --- |
-| aws | AWS setup utilities and Lambda/S3/CloudWatch integrations | 19 | AWS SSO |
+| aws | AWS Step Functions, Lambda, S3, CloudWatch, EventBridge, and DMS integrations | 19 | AWS SSO |
 | snowflake | Snowflake queries and setup helpers | 21 | SSO |
 | sqlserver | SQL Server database access | 10 | Windows/Auth |
 | denodo | Denodo virtual database queries | 7 | Username/Password |
@@ -130,13 +130,25 @@ Optional packages used by the project may include the SQL Server ODBC client and
 ```text
 analytics-common-mcp/
 ├── aws/
-│   └── run_server.py
+│   ├── run_server.py
+│   └── src/
+│       └── aws_mcp/
+│           ├── __init__.py
+│           ├── config.py
+│           ├── server.py
+│           ├── session.py
+│           └── tools/
+│               ├── __init__.py
+│               ├── step_functions.py
+│               ├── lambda_tools.py
+│               ├── s3.py
+│               ├── cloudwatch.py
+│               ├── eventbridge.py
+│               └── dms.py
 ├── confluence/
 │   └── confluence_server.py
 ├── dbt/
 │   └── dbt_server.py
-├── denodo/
-│   └── denodo_server.py
 ├── github/
 │   ├── run-github-mcp.cmd
 │   └── github-mcp.cmd
@@ -144,15 +156,14 @@ analytics-common-mcp/
 │   └── hana_server.py
 ├── jira/
 │   └── jira_server.py
-├── logs/
 ├── powerbi-rest/
 │   └── server.py
 ├── servicenow/
 │   ├── servicenow_proxy.py
 │   └── setup_auth.py
 ├── shared/
-│   ├── credentials.py
 │   ├── audit.py
+│   ├── credentials.py
 │   └── logs/
 ├── snowflake/
 │   └── server.py
@@ -164,7 +175,8 @@ analytics-common-mcp/
 ├── README.md
 ├── requirements.txt
 ├── setup_credentials.py
-└── SETUP_GUIDE.md
+├── SETUP_GUIDE.md
+└── .github/
 ```
 
 ## Security
