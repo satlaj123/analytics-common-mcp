@@ -1,0 +1,3 @@
+# Cache files are enviornment-specific, don't commit
+*
+!.gitignore
